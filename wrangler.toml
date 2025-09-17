@@ -1,0 +1,8 @@
+name = "weather-ai-agent"
+main = "worker.js"
+compatibility_date = "2025-09-17"
+
+# Optional: Environment variables (set these in Cloudflare dashboard for security)
+# [vars]
+# WEATHER_API_KEY = "your-key-here"
+# OPENAI_API_KEY = "your-key-here"

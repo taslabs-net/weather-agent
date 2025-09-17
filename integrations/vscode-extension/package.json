@@ -1,0 +1,59 @@
+{
+  "name": "weather-ai-assistant",
+  "displayName": "Weather AI Assistant",
+  "description": "AI-powered weather assistant for VS Code",
+  "version": "1.0.0",
+  "publisher": "your-publisher-name",
+  "engines": {
+    "vscode": "^1.60.0"
+  },
+  "categories": ["Other"],
+  "keywords": ["weather", "ai", "assistant", "productivity"],
+  "activationEvents": ["onCommand:weatherAI.getWeather"],
+  "main": "./extension.js",
+  "contributes": {
+    "commands": [
+      {
+        "command": "weatherAI.getWeather",
+        "title": "Ask Weather AI",
+        "category": "Weather"
+      },
+      {
+        "command": "weatherAI.quickWeather",
+        "title": "Quick Weather Check",
+        "category": "Weather"
+      }
+    ],
+    "keybindings": [
+      {
+        "command": "weatherAI.getWeather",
+        "key": "ctrl+shift+w",
+        "mac": "cmd+shift+w"
+      }
+    ],
+    "configuration": {
+      "title": "Weather AI Assistant",
+      "properties": {
+        "weatherAI.apiUrl": {
+          "type": "string",
+          "default": "http://localhost:3000",
+          "description": "Weather AI API URL"
+        },
+        "weatherAI.defaultLocation": {
+          "type": "string",
+          "default": "",
+          "description": "Default location for quick weather checks"
+        }
+      }
+    }
+  },
+  "scripts": {
+    "lint": "eslint .",
+    "package": "vsce package"
+  },
+  "devDependencies": {
+    "@types/vscode": "^1.60.0",
+    "eslint": "^8.0.0",
+    "vsce": "^2.0.0"
+  }
+}
