@@ -1,6 +1,7 @@
 name = "weather-ai-agent"
 main = "worker.js"
 compatibility_date = "2025-09-17"
+account_id = "b15ec51cdf96746b05cb3983874d65a2"
 
 # Optional: Environment variables (set these in Cloudflare dashboard for security)
 # [vars]
