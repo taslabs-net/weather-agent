@@ -15,10 +15,19 @@
    wrangler deploy
    ```
 
-3. **Set up the OpenAI API key secret:**
+3. **Set up required secrets:**
    ```bash
+   # Weather API key (get from https://www.visualcrossing.com/weather-api)
+   wrangler secret put WEATHER_API_KEY
+
+   # OpenAI API key
    wrangler secret put OPENAI_API_KEY
-   # Enter your OpenAI API key when prompted
+
+   # Your Cloudflare AI Gateway URL
+   wrangler secret put OPENAI_BASE_URL
+
+   # Cloudflare Gateway access client ID
+   wrangler secret put CF_ACCESS_CLIENT_ID
    ```
 
 4. **Your API will be available at:**

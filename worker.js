@@ -1,12 +1,7 @@
 // Cloudflare Worker for Weather AI Agent
 
-// Weather API configuration
-const WEATHER_API_KEY = '9B8SF4ZFZMKZGQYZP25EDKMTS';
+// API configuration - all values come from environment variables
 const WEATHER_BASE_URL = 'https://weather.visualcrossing.com/VisualCrossingWebServices/rest/services/timeline';
-
-// OpenAI configuration (use your Cloudflare AI Gateway)
-const OPENAI_BASE_URL = 'https://gateway.ai.cloudflare.com/v1/b15ec51cdf96746b05cb3983874d65a2/openapi-test/openai';
-const CF_ACCESS_CLIENT_ID = 'Ajfw-xLw4lwqC0ZGEDi9YeHx6SIiqJfra4O72-vM';
 
 class WeatherAgent {
   constructor(env) {
@@ -17,7 +12,7 @@ class WeatherAgent {
 
   async getWeatherData(location) {
     try {
-      const url = `${WEATHER_BASE_URL}/${encodeURIComponent(location)}?unitGroup=us&contentType=json&key=${WEATHER_API_KEY}`;
+      const url = `${WEATHER_BASE_URL}/${encodeURIComponent(location)}?unitGroup=us&contentType=json&key=${this.env.WEATHER_API_KEY}`;
 
       const response = await fetch(url, {
         headers: { 'Accept': 'application/json' }
@@ -74,12 +69,12 @@ User input: "${userInput}"
 Return only valid JSON.`;
 
     try {
-      const response = await fetch(`${OPENAI_BASE_URL}/chat/completions`, {
+      const response = await fetch(`${this.env.OPENAI_BASE_URL}/chat/completions`, {
         method: 'POST',
         headers: {
           'Authorization': `Bearer ${this.env.OPENAI_API_KEY}`,
           'Content-Type': 'application/json',
-          'CF-Access-Client-Id': CF_ACCESS_CLIENT_ID
+          'CF-Access-Client-Id': this.env.CF_ACCESS_CLIENT_ID
         },
         body: JSON.stringify({
           model: "gpt-3.5-turbo",
@@ -126,12 +121,12 @@ Based on the intent, provide a helpful response:
 Be concise but helpful. Use emojis sparingly. Always end with a follow-up question or suggestion.`;
 
     try {
-      const response = await fetch(`${OPENAI_BASE_URL}/chat/completions`, {
+      const response = await fetch(`${this.env.OPENAI_BASE_URL}/chat/completions`, {
         method: 'POST',
         headers: {
           'Authorization': `Bearer ${this.env.OPENAI_API_KEY}`,
           'Content-Type': 'application/json',
-          'CF-Access-Client-Id': CF_ACCESS_CLIENT_ID
+          'CF-Access-Client-Id': this.env.CF_ACCESS_CLIENT_ID
         },
         body: JSON.stringify({
           model: "gpt-3.5-turbo",

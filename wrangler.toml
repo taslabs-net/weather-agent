@@ -3,7 +3,8 @@ main = "worker.js"
 compatibility_date = "2025-09-17"
 account_id = "b15ec51cdf96746b05cb3983874d65a2"
 
-# Optional: Environment variables (set these in Cloudflare dashboard for security)
-# [vars]
-# WEATHER_API_KEY = "your-key-here"
-# OPENAI_API_KEY = "your-key-here"
+# Required secrets (set via wrangler secret put):
+# - WEATHER_API_KEY: Visual Crossing Weather API key
+# - OPENAI_API_KEY: OpenAI API key for AI features
+# - OPENAI_BASE_URL: Your Cloudflare AI Gateway URL
+# - CF_ACCESS_CLIENT_ID: Cloudflare Gateway access client ID

@@ -4,7 +4,7 @@ const OpenAI = require('openai');
 
 class WeatherAgent {
   constructor() {
-    this.weatherApiKey = '9B8SF4ZFZMKZGQYZP25EDKMTS';
+    this.weatherApiKey = process.env.WEATHER_API_KEY;
     this.weatherBaseUrl = 'https://weather.visualcrossing.com/VisualCrossingWebServices/rest/services/timeline';
     this.openai = null;
     this.conversationHistory = [];
@@ -15,10 +15,10 @@ class WeatherAgent {
   setOpenAIKey(apiKey) {
     this.openai = new OpenAI({
       apiKey,
-      baseURL: 'https://gateway.ai.cloudflare.com/v1/b15ec51cdf96746b05cb3983874d65a2/openapi-test/openai',
-      defaultHeaders: {
-        'CF-Access-Client-Id': 'Ajfw-xLw4lwqC0ZGEDi9YeHx6SIiqJfra4O72-vM'
-      }
+      baseURL: process.env.OPENAI_BASE_URL || 'https://api.openai.com/v1',
+      defaultHeaders: process.env.CF_ACCESS_CLIENT_ID ? {
+        'CF-Access-Client-Id': process.env.CF_ACCESS_CLIENT_ID
+      } : {}
     });
   }
 
